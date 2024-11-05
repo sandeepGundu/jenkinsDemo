@@ -4,7 +4,7 @@ stages{
 	stage('checkout'){
 		steps{
 			echo 'Checking out !!'
-			git 'https://github.com/vamsibkrishna/spring-petclinic.git'
+			git 'https://github.com/sandeepGundu/jenkinsDemo.git'
 			}
 		}
 
@@ -12,7 +12,7 @@ stages{
 		steps{
 			echo 'Building out !!'
 			script{
-				env.PATH = 'C:/Users/pc/Downloads/apache-maven-3.6.3/bin;c:\\Windows\\System32'
+				env.PATH = 'C:/apache-maven-3.9.9/bin;c:\\Windows\\System32'
 			}
 			bat label: '', script: 'mvn package'
 		}
@@ -29,7 +29,7 @@ stages{
 	post {
 		always {
 			echo 'Pipeline finished'
-			 step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
+			 step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST*.xml'])
 		}
 		}
 }
